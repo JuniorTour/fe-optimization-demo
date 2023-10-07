@@ -14,7 +14,9 @@ module.exports = {
   },
   plugins: [
     new BundleAnalyzerPlugin({
-      analyzerMode: 'static',
+      // analyzerMode: 'static',
+      // analyzerMode: 'json',
+      analyzerMode: 'server',
       defaultSizes: 'gzip',
       openAnalyzer: false,
     }),
