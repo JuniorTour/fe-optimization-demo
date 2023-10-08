@@ -14,11 +14,12 @@ module.exports = {
   },
   plugins: [
     new BundleAnalyzerPlugin({
-      // analyzerMode: 'static',
+      analyzerMode: 'static',
       // analyzerMode: 'json',
-      analyzerMode: 'server',
+      // analyzerMode: 'server',
       defaultSizes: 'gzip',
       openAnalyzer: false,
+      disabled: !!process.env.enableBundleAnalyzer,
     }),
     new HtmlWebpackPlugin({
       template: 'index.html',
