@@ -11,7 +11,7 @@ module.exports = {
   mode: 'production',
   output: {
     path: DIST,
-    publicPath: '',
+    publicPath: 'http://localhost:3000/',
     filename: '[name].[contenthash].js',
   },
   optimization: {
