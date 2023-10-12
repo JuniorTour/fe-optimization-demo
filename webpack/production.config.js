@@ -11,7 +11,7 @@ module.exports = {
   mode: 'production',
   output: {
     path: DIST,
-    publicPath: '',
+    publicPath: 'http://localhost:3000/',
     filename: '[name].[contenthash].js',
   },
   optimization: {
@@ -24,7 +24,8 @@ module.exports = {
         vendor: {
           test: /[\\/]node_modules[\\/]/,
           name: 'vendors',
-          chunks: 'all',
+          // chunks: 'all',    // 指定vendors区块包含同步、异步加载的2类模块。
+          chunks: 'initial', // 指定vendors区块只包含同步加载的模块。
         },
       },
     },
