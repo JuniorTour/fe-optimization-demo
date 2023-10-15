@@ -100,6 +100,7 @@
   "dependencies": {
     "axios": "^0.26.0",
     "clsx": "^1.1.1",
+    "crypto": "^1.0.1",
     "effector": "^22.1.2",
     "effector-react": "^22.0.6",
     "effector-storage": "^5.0.0",
