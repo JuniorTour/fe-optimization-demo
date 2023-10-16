@@ -38,9 +38,9 @@ module.exports = {
     // 指定是否将Webpack的运行时（每个文件中重复的、用于加载的函数）拆分为独立文件，能减少重复代码。
     runtimeChunk: 'single',
     splitChunks: {
-      chunks: 'all',
       maxInitialRequests: MAX_REQUEST_NUM,
       maxAsyncRequests: MAX_REQUEST_NUM,
+      minSize: MIN_LIB_CHUNK_SIZE,
       cacheGroups: {
         defaultVendors: false,
         default: false,
@@ -67,7 +67,7 @@ module.exports = {
               );
             }
 
-            return `lib_${hash.digest('hex').substring(0, 8)}`;
+            return `lib.${hash.digest('hex').substring(0, 8)}`;
           },
           priority: 3,
           minChunks: 1,
@@ -75,16 +75,16 @@ module.exports = {
         },
         shared: {
           chunks: 'all',
-          minSize: MIN_LIB_CHUNK_SIZE,
           name(module, chunks) {
-            return `shared_${crypto
+            return `shared.${crypto
               .createHash('sha1')
               .update(
                 chunks.reduce((acc, chunk) => {
                   return acc + chunk.name;
                 }, ''),
               )
-              .digest('hex')}${isModuleCSS(module) ? '_CSS' : ''}`;
+              .digest('hex')
+              .substring(0, 8)}${isModuleCSS(module) ? '.CSS' : ''}`;
           },
           priority: 1,
           minChunks: 2,
