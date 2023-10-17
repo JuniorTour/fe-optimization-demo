@@ -5,10 +5,12 @@ const TerserPlugin = require('terser-webpack-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-
+const { WebpackManifestPlugin } = require('webpack-manifest-plugin');
 const crypto = require('crypto');
 const path = require('path');
 const { DIST, SRC } = require('./constants');
+
+const PUBLIC_PATH = 'http://localhost:3000/';
 
 const MAX_REQUEST_NUM = 20;
 // 指定一个 module 可以被拆分为独立 区块（chunk） 的最小源码体积（单位：byte）
@@ -29,7 +31,7 @@ module.exports = {
   mode: 'production',
   output: {
     path: DIST,
-    publicPath: 'http://localhost:3000/',
+    publicPath: PUBLIC_PATH,
     filename: '[name].[contenthash].js',
   },
   optimization: {
@@ -116,6 +118,32 @@ module.exports = {
     }),
     new DefinePlugin({
       'process.env': JSON.stringify(process.env),
+    }),
+    new WebpackManifestPlugin({
+      fileName: 'assets-manifest.json',
+      generate: (seed, files) => {
+        const entrypoints = new Set();
+        files.forEach((file) => {
+          // eslint-disable-next-line no-underscore-dangle
+          const chunkGroups = file?.chunk?._groups;
+          if (chunkGroups) {
+            chunkGroups.forEach((group) => entrypoints.add(group));
+          }
+        });
+        const entries = [...entrypoints];
+        const entryArrayManifest = entries.reduce((acc, entry) => {
+          const name = entry?.options.name || entry?.runtimeChunk.name;
+          const chunks =
+            entry?.chunks?.map((chunk) =>
+              chunk.files.map((file) => PUBLIC_PATH + file),
+            ) || [];
+          const allFiles = [].concat(...chunks).filter(Boolean);
+
+          return name ? { ...acc, [name]: allFiles } : acc;
+        }, seed);
+
+        return entryArrayManifest;
+      },
     }),
   ],
   module: {
