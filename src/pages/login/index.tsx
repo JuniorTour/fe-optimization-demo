@@ -1,10 +1,13 @@
 import { Link, Redirect } from 'react-router-dom';
 import * as visitor from '@/entities/visitor';
 import { ROUTES } from '@/shared/router';
+import { getTime } from '@/shared/temp-shared-chunk-example';
 import { Page, Row } from '@/shared/ui';
 import { LoginForm, Error } from './ui';
 
 const LoginPage = () => {
+  getTime();
+
   const isAuth = visitor.selectors.useIsAuthorized();
 
   return isAuth ? (
