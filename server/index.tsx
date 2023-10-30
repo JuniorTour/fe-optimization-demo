@@ -6,7 +6,9 @@ const PORT = 3000;
 
 app.get('*', (req, res) => {
   const reqURL = req.url;
-  const markup = renderToString(<div>Hello SSR! 你请求的URL是${reqURL}</div>);
+  const markup = renderToString(
+    <div className="hello-ssr">Hello SSR! 你请求的URL是{reqURL}</div>,
+  );
 
   // eslint-disable-next-line no-console
   console.log(`markup=${markup.substring(0, 100)}`);
