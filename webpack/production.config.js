@@ -1,13 +1,14 @@
 const { resolve } = require('path');
 const { DefinePlugin } = require('webpack');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const { merge } = require('webpack-merge');
 const { DIST, SRC } = require('./constants');
+const cssModuleRules = require('./cssModuleRules');
 
-module.exports = {
+module.exports = merge(cssModuleRules, {
   mode: 'production',
   output: {
     path: DIST,
@@ -47,47 +48,8 @@ module.exports = {
         concurrency: 100,
       },
     }),
-    new MiniCssExtractPlugin({
-      filename: '[name].[contenthash].css',
-    }),
     new DefinePlugin({
       'process.env': JSON.stringify(process.env),
     }),
   ],
-  module: {
-    rules: [
-      {
-        test: /\.css$/,
-        use: [
-          MiniCssExtractPlugin.loader,
-
-          {
-            loader: 'css-loader',
-            options: {
-              importLoaders: 1,
-            },
-          },
-          'postcss-loader',
-        ],
-        exclude: /\.module\.css$/,
-      },
-      {
-        test: /\.css$/,
-        use: [
-          MiniCssExtractPlugin.loader,
-          {
-            loader: 'css-loader',
-            options: {
-              importLoaders: 1,
-              modules: {
-                localIdentName: '[local]-[hash:base64:10]',
-              },
-            },
-          },
-          'postcss-loader',
-        ],
-        include: /\.module\.css$/,
-      },
-    ],
-  },
-};
+});
