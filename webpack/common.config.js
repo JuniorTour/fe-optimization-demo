@@ -3,6 +3,26 @@ const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const { SRC, FAVICON } = require('./constants');
 
+const configPlugins = [
+  new BundleAnalyzerPlugin({
+    analyzerMode: 'static',
+    defaultSizes: 'gzip',
+    openAnalyzer: false,
+  }),
+  new FaviconsWebpackPlugin({
+    logo: FAVICON,
+  }),
+];
+
+if (!process.env.BUILD_SERVER) {
+  configPlugins.push(
+    new HtmlWebpackPlugin({
+      template: 'index.html',
+      inject: 'body',
+    }),
+  );
+}
+
 module.exports = {
   context: SRC,
   entry: ['react-hot-loader/patch', './index.tsx'],
@@ -12,20 +32,7 @@ module.exports = {
     //   'react-dom': '@hot-loader/react-dom',
     // },
   },
-  plugins: [
-    new BundleAnalyzerPlugin({
-      analyzerMode: 'static',
-      defaultSizes: 'gzip',
-      openAnalyzer: false,
-    }),
-    new HtmlWebpackPlugin({
-      template: 'index.html',
-      inject: 'body',
-    }),
-    new FaviconsWebpackPlugin({
-      logo: FAVICON,
-    }),
-  ],
+  plugins: configPlugins,
   module: {
     rules: [
       {

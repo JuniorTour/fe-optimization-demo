@@ -1,5 +1,5 @@
 import { Page, Row } from '@/shared/ui';
-import { LogoutBanner } from './logout-banner';
+// import { LogoutBanner } from './logout-banner';
 import { Sidebar } from './sidebar';
 import { Tabs } from './tabs';
 
@@ -10,7 +10,7 @@ type Props = Readonly<{
 export const Layout = ({ children }: Props) => {
   return (
     <div className="home-page">
-      <LogoutBanner />
+      {/* <LogoutBanner /> */}
       <Page>
         <Row>
           <main className="col-md-9">

@@ -1,10 +1,10 @@
 import React from 'react';
 import { renderToString } from 'react-dom/server';
 import { StaticRouterContext } from 'react-router';
-import { StaticRouter } from 'react-router-dom';
 import { readFileSync } from 'fs';
 import { resolve } from 'path';
 import { App } from '../src/app/ui/app/app';
+import { history } from '../src/shared/router';
 import { DIST } from '../webpack/constants';
 
 function getIndexHTMLTemplate() {
@@ -16,11 +16,10 @@ function getIndexHTMLTemplate() {
 export function serverRenderer(req, res) {
   const context: StaticRouterContext = {};
 
-  const markup = renderToString(
-    <StaticRouter context={context} location={req.url}>
-      <App />
-    </StaticRouter>,
-  );
+  const reqUrl = req.url;
+  history.push(reqUrl);
+
+  const markup = renderToString(<App />);
 
   // eslint-disable-next-line no-console
   console.log(`markup=${markup.substring(0, 100)}`);

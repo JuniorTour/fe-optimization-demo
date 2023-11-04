@@ -5,14 +5,14 @@ const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const { merge } = require('webpack-merge');
-const { DIST, SRC } = require('./constants');
+const { DIST, SRC, PUBLIC_PATH } = require('./constants');
 const cssModuleRules = require('./cssModuleRules');
 
 module.exports = merge(cssModuleRules, {
   mode: 'production',
   output: {
     path: DIST,
-    publicPath: 'http://localhost:3000/',
+    publicPath: PUBLIC_PATH,
     filename: '[name].[contenthash].js',
   },
   optimization: {

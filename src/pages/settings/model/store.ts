@@ -49,7 +49,7 @@ split({
 });
 
 visitor.logoutClicked.watch(() => {
-  history.push(ROUTES.root);
+  history.push(ROUTES.login);
 });
 
 export const $error = restore(changeUserDataFx.failData, {

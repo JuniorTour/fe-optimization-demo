@@ -1,7 +1,11 @@
 import { createEvent, restore } from 'effector';
-import { createMemoryHistory, Location } from 'history';
+import { createMemoryHistory, createBrowserHistory, Location } from 'history';
 
-export const history = createMemoryHistory();
+const isBrowser = typeof window !== 'undefined';
+
+export const history = isBrowser
+  ? createBrowserHistory()
+  : createMemoryHistory();
 
 export const locationUpdated = createEvent<Location>();
 export const $location = restore(locationUpdated, history.location);
