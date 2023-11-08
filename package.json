@@ -11,10 +11,13 @@
     "commit": "cross-env git-cz",
     "dev": "cross-env NODE_ENV=development webpack serve",
     "build-server": "cross-env NODE_ENV=production BUILD_SERVER=true webpack --config ./webpack/server.config.js",
-    "start-debug-server": "node --inspect-brk ./dist/server.js",
+    "start-server-debug": "node --inspect-brk ./dist/server.js",
     "start-server": "node ./dist/server.js",
     "build-client": "cross-env NODE_ENV=production webpack",
-    "build": "npm run build-client && npm run build-server",
+    "build-ssg": "cross-env NODE_ENV=production BUILD_SERVER=true webpack --config ./webpack/server-static-generation.config.js",
+    "run-ssg": "node ./dist/staticGenerator.js",
+    "build-run-ssg": "npm run build-ssg && npm run run-ssg",
+    "build": "npm run build-client && npm run build-run-ssg && npm run build-server",
     "preview": "npx serve -s dist",
     "clean": "rm dist",
     "lint:file": "cross-env eslint . --ext .js,.jsx,.ts,.tsx --fix",
@@ -35,7 +38,7 @@
     ]
   },
   "devDependencies": {
-    "@babel/core": "^7.17.5",
+    "@babel/core": "^7.18.0",
     "@babel/plugin-transform-runtime": "^7.17.0",
     "@babel/preset-env": "^7.16.11",
     "@babel/preset-react": "^7.16.7",
@@ -101,6 +104,7 @@
     "webpack-merge": "^5.8.0"
   },
   "dependencies": {
+    "@babel/plugin-transform-regenerator": "^7.18.0",
     "axios": "^0.26.0",
     "clsx": "^1.1.1",
     "effector": "^22.1.2",
