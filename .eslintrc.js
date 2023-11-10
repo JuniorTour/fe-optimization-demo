@@ -73,7 +73,7 @@ module.exports = {
 
     'import/prefer-default-export': 0,
     'import/no-extraneous-dependencies': 0,
-    'import/no-default-export': 2,
+    'import/no-default-export': 0,
     'import/no-self-import': 2,
     'import/no-named-as-default': 2,
     'import-helpers/order-imports': [
