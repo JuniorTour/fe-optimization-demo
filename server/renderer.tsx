@@ -6,6 +6,7 @@ import { resolve } from 'path';
 import { App } from '../src/app/ui/app/app';
 import { history } from '../src/shared/router';
 import { DIST } from '../webpack/constants';
+import { markSSREnd, measureSSRRenderDuration } from './performance-mark';
 
 function getIndexHTMLTemplate() {
   return readFileSync(resolve(DIST, 'index.html'), {
@@ -24,6 +25,8 @@ export function serverRenderer(req, res) {
   // eslint-disable-next-line no-console
   console.log(`markup=${markup.substring(0, 100)}`);
 
+  markSSREnd();
+
   if (context.url) {
     // eslint-disable-next-line no-console
     console.log(`context?.url=${context?.url}`);
@@ -37,4 +40,6 @@ export function serverRenderer(req, res) {
       ),
     );
   }
+
+  measureSSRRenderDuration();
 }
