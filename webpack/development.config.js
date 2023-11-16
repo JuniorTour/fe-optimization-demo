@@ -1,12 +1,12 @@
 const { resolve } = require('path');
 const { DefinePlugin, HotModuleReplacementPlugin } = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const { DIST } = require('./constants');
+const { DIST_CLIENT } = require('./constants');
 
 module.exports = {
   mode: 'development',
   output: {
-    path: resolve(DIST),
+    path: resolve(DIST_CLIENT),
     publicPath: '/',
     filename: 'bundle.js',
   },

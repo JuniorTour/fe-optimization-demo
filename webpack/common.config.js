@@ -1,16 +1,12 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
-const { SRC, FAVICON } = require('./constants');
+const { SRC } = require('./constants');
 
 const configPlugins = [
   new BundleAnalyzerPlugin({
     analyzerMode: 'static',
     defaultSizes: 'gzip',
     openAnalyzer: false,
-  }),
-  new FaviconsWebpackPlugin({
-    logo: FAVICON,
   }),
 ];
 
