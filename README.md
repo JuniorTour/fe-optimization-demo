@@ -11,6 +11,8 @@
 #### [6. SSR to ISR](https://github.com/JuniorTour/fe-optimization-demo/pull/6)
 #### ...未完待续
 
+![小册海报](https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/cba300fcaa8a44d386ad1c1f229f205a~tplv-k3u1fbpfcp-jj-mark:518:0:0:0:q68.avis#?w=4320\&h=7680\&s=5979389\&e=jpg\&b=5eb198)
+
 ## 运行方式
 ### 开发环境运行
 ``` shell
