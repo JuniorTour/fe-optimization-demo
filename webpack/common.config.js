@@ -1,7 +1,8 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
-const { SRC, FAVICON } = require('./constants');
+const { DllReferencePlugin } = require('webpack');
+const { DIST_DLL, SRC, FAVICON, reactRuntimeName } = require('./constants');
 
 module.exports = {
   context: SRC,
@@ -13,8 +14,12 @@ module.exports = {
     // },
   },
   plugins: [
+    new DllReferencePlugin({
+      manifest: require(`${DIST_DLL}/${reactRuntimeName}-manifest.json`),
+    }),
     new BundleAnalyzerPlugin({
-      analyzerMode: 'static',
+      // analyzerMode: 'static',
+      analyzerMode: 'disabled',
       defaultSizes: 'gzip',
       openAnalyzer: false,
     }),
