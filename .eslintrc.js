@@ -1,4 +1,5 @@
 module.exports = {
+  ignorePatterns: ['**/dist-dll/*.js'],
   parser: '@typescript-eslint/parser',
   env: {
     browser: true,
@@ -33,6 +34,7 @@ module.exports = {
     },
   },
   rules: {
+    'import/no-dynamic-require': 0,
     'arrow-body-style': 0,
     'no-shadow': 0,
     'no-use-before-define': 0,

@@ -11,6 +11,7 @@
     "commit": "cross-env git-cz",
     "dev": "cross-env NODE_ENV=development webpack serve",
     "build": "cross-env NODE_ENV=production webpack",
+    "build-dll": "cross-env NODE_ENV=production webpack --config ./webpack/dll.config.js",
     "preview": "npx serve -s dist",
     "clean": "rm dist",
     "lint:file": "cross-env eslint . --ext .js,.jsx,.ts,.tsx --fix",
