@@ -4,12 +4,11 @@ module.exports = {
     '@babel/typescript',
     [
       '@babel/preset-react',
-      {
-        runtime: 'automatic',
-      },
+      { runtime: 'automatic', importSource: '@emotion/react' },
     ],
   ],
   plugins: [
+    '@emotion/babel-plugin',
     [
       'module-resolver',
       {
