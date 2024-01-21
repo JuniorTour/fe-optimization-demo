@@ -15,7 +15,7 @@
     "clean": "rm dist",
     "lint:file": "cross-env eslint . --ext .js,.jsx,.ts,.tsx --fix",
     "lint": "cross-env eslint . --ext .js,.jsx,.ts,.tsx --fix.",
-    "test": "npx playwright test example.spec.ts",
+    "test:ci": "npx playwright test",
     "pretty": "cross-env prettier --write '**/*.{j,t}{s,sx}'",
     "typecheck": "cross-env tsc"
   },

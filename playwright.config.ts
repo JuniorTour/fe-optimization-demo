@@ -10,6 +10,14 @@ import { defineConfig, devices } from '@playwright/test';
  * See https://playwright.dev/docs/test-configuration.
  */
 export default defineConfig({
+  webServer: {
+    command: 'npm run dev',
+    port: 4100,
+    reuseExistingServer: !process.env.CI,
+    stdout: 'pipe',
+    stderr: 'pipe',
+    timeout: 60 * 1000,
+  },
   testDir: './tests',
   /* Run tests in files in parallel */
   fullyParallel: true,
