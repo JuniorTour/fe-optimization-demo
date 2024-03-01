@@ -9,7 +9,12 @@
 #### [4. CSR to SSR](https://github.com/JuniorTour/fe-optimization-demo/pull/4)
 #### [5. SSR to SSG](https://github.com/JuniorTour/fe-optimization-demo/pull/5)
 #### [6. SSR to ISR](https://github.com/JuniorTour/fe-optimization-demo/pull/6)
-#### ...未完待续
+#### [7. 采集UA数据](https://github.com/JuniorTour/fe-optimization-demo/pull/7)
+#### [8. 使用DLL插件加速构建](https://github.com/JuniorTour/fe-optimization-demo/pull/8)
+#### [9. 现代构建工具 ESBuild](https://github.com/JuniorTour/fe-optimization-demo/pull/9)
+#### [10. CSS prop](https://github.com/JuniorTour/fe-optimization-demo/pull/10)
+#### [11. 提交前预检查](https://github.com/JuniorTour/fe-optimization-demo/pull/11)
+#### [12. 自动化测试和CI](https://github.com/JuniorTour/fe-optimization-demo/pull/12)
 
 ![小册海报](https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/cba300fcaa8a44d386ad1c1f229f205a~tplv-k3u1fbpfcp-jj-mark:518:0:0:0:q68.avis#?w=4320\&h=7680\&s=5979389\&e=jpg\&b=5eb198)
 
